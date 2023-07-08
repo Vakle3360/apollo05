@@ -1,13 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Apollo from './pages/apollo';
+import NoPage from './pages/pageNotExist';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<App/>}/>
+        <Route path="/home" element={<App/>}/>
+        <Route path="/apollo05" element={<Apollo/>}/>
+        <Route path="*" element={<NoPage/>}/>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
