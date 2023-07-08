@@ -1,23 +1,34 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Apollo from './pages/apollo';
-import NoPage from './pages/pageNotExist';
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { createHashRouter, HashRouter, RouterProvider, Routes, Route } from "react-router-dom";
+import Apollo from "./pages/apollo";
+import NoPage from "./pages/pageNotExist";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createHashRouter([
+  {
+    path: "/home",
+    element: <App />,
+  },
+  {
+    path: "/apollo05",
+    element: <Apollo />,
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
-        <Route index element={<App/>}/>
-        <Route path="/home" element={<App/>}/>
-        <Route path="/apollo05" element={<Apollo/>}/>
-        <Route path="*" element={<NoPage/>}/>
+          <Route index element={<App/>}/>
+          <Route path="/home" element={<App/>}/>
+          <Route path="/apollo05" element={<Apollo/>}/>
+          <Route path="*" element={<NoPage/>}/>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
 
